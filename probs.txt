@@ -1,0 +1,106 @@
+- intro ima
+- “I’m going to assume you already have [Android Studio](http://developer.android.com/tools/studio/index.html) installed.” doesn’t even give dl link
+
+- “Open Android Studio and select Start a new Android Studio project from the Quick Start menu:” not detailed. Also picture shows different thin highlighted
+
+- "Start a new Android Studio project" should be in bold not code blocks
+
+- “Name the app WatcFhace”. Not sure if misspell is intentiona or not. Also should be in bold not code blocks
+
+- "set an appropriate company domain and project location" could show example screenshot so user knows what to accept and an example of an appropriate company domain and location.
+
+- Again "set the Minimum SDK to API 12: Android 5.0 (Lollipop) for both" does not match screenshot image. ALso "API 12: Android 5.0 (Lollipop)" should be in bold not code blocks
+
+- "select Add No Activity" Add no activity should be in bold.
+
+- Rephrase "On the subsequent Add an activity to Mobile dialog" for better flow
+
+- "click Finish" finish should be in bold
+
+- "Tools\Android\AVD Manager" should be in bold not code blocks
+
+- "you'll should see the following" grammar/typo
+
+- ![](Images/add_activity_wear.png) was ![](Images/add_activity_waer.png)
+
+- "In the Select Hardware dialog, choose Wear from the category list, then Android Wear Square from the hardware list, and then click Next:" make things to click bold
+
+- mispelling "Creating an Android Were virtual device"
+
+- "Select Tools\Android\AVD Manager and in the window that appears click Create Virtual Device...:" more screenshots might be nice
+
+- "choose Wear from the category list, then Android Wear Square from the hardware list" screenshot shows different
+
+- "check Use Host GPU, which allows the emulator to use our machines GPU and therefore provide a much better experience" literally just regurgitating whats already shown in androidstudio/screenshot. Provide more insight into what that means.
+
+- "Android Wear watch faces are implemented as services and are packaged inside a wearable app" what is a service?
+
+- Getting Started section is pretty long. It doesnt do what it should. It should do the things listed here - http://www.raywenderlich.com/tutorial-team/writing-guide-part-3
+
+- "Right-click on wear\java\your-package-name.watchface in the project navigator and choose New\Java Class. Name the class WatchFaceService and click OK." bold not inline code.
+
+- Maybe rename the class "WatchFaceService" to reflect the app name as it kind of suggests it is a superclass of CanvasWatchFaceService based on common convention.
+
+- "private class Enigne" mispelled engine. Would cause compile error/worrying ide message
+
+- Also, maybe talk about what it means to EXTEND a class.
+
+- "Right-click wear\manifests\AndroidManifest.xml" bold
+
+- "We declare the xml resource for the watch face, which we'll add in a moment." might be better to add xml first and say what it does before this section.
+
+- "We declare what the service can do by way of an intent filter" whats an intent-filter. link to tutorial on intents
+
+- "Name the file watch_face and click OK". bold. also naming convention for xml resources.
+
+- "Usually we would want these would be" typo
+
+- "As I mentioned earlier, Engine" bold Engine
+
+- "This is called when the first, peeking card positions itself on the screen" erroneous comma
+
+- "We'll flesh out onDraw shortly, but for now it simply calls through to it's super implementation." no call to super in code block
+
+- "// 1
+private static final String TIME_FORMAT = "02d:02d";" in code brakdown, talk about what the format specifier means
+
+- "private final Paint timePaint;
+private final int backgroundColor;" non public, member variables should have 'm' prefix
+
+- "At this point you've probably noticed that any call using resources is currently red" maybe add relevant material before using to make reader feel better. Maybe say something like "If youre not using the starter project add this stuf now, its going to be used to do xyz. otherwise skip to the good bit"
+
+- "In the subsequent dialog name the file colours and click OK" not correctly bolded and missing comma
+
+- "Here we're defining the size of the text used to the display the time" grammatical error
+
+- "// 1
+Time time = new Time();
+time.setToNow();
+// 2" no new lines. Also which Time should we be using, java.date.time or java.sql.time (if thats a thing)
+
+- "private WatchFace watchFace;" should be mWatchFace
+
+- "<colour name="watch_face_time">#FFFFFF</color>","<color name="watch_face_fill">#00796B</color>","<color name="watch_face_date">009688</color>" name the values better to reflect that it is a color eg 'color_watch_face'
+
+- "which is great site" grammar
+
+- "text used to the display the date" grammar
+
+- "private final Paint datePaint;" should be mDatePaint
+
+- "Now add the following just above the return statement in newInstance" newInstance should have brackets denoting its a method. Also maybe be more explicit about where to add statements
+
+- "whether or not the text should be drawn using anti-aliasing." what is anti-aliasing and why do we want it
+
+- "update the return statement in newInstance","to the very bottom of draw","the bottom of onDraw","just above onCreate in Engine","Add the following inside draw" method bracket. check for more
+
+- "String dateText = String.format(DATE_FORMAT, time.monthDay, time.month + 1, time.year);" why month+1?
+
+- No summary or "where to go from here"
+
+
+
+
+
+
+
