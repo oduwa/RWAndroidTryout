@@ -28,7 +28,7 @@ On the subsequent Add an activity to Mobile dialog, select Add No Activity since
 
 Then do the same on the Add an activity to Wear dialog, and click Finish:
 
-![](Images/add_activity_waer.png)
+![](Images/add_activity_wear.png)
 
 Now we've created the project, it's time to create an emulator suitable for testing Android Wear watch faces.
 
