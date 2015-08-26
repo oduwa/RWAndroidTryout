@@ -1,4 +1,5 @@
-- intro ima
+- ADD ALL NECESSARY IMPORTS AT BEGINNING OF CODE TUTORIAL
+
 - “I’m going to assume you already have [Android Studio](http://developer.android.com/tools/studio/index.html) installed.” doesn’t even give dl link
 
 - “Open Android Studio and select Start a new Android Studio project from the Quick Start menu:” not detailed. Also picture shows different thin highlighted
@@ -97,6 +98,45 @@ time.setToNow();
 - "String dateText = String.format(DATE_FORMAT, time.monthDay, time.month + 1, time.year);" why month+1?
 
 - No summary or "where to go from here"
+
+- "When the System Image dialog appears, select the x86 Lollipop image and click Next". warn reader not to select wrong lollipop. as in wearable lollipop
+
+- "return new Engine()" no semicolon. also maybe mention necessary imports
+
+- "Select the two files in Finder and then right-click" user might not be using a mac or know what finder is
+
+- MASSIVE FUCKING MISTAKE "resource="xml/watch_face"" should be @xml/wwatch_face. The manifest is full of these
+
+- "setWatchFaceStyle(new WatchFaceStyle.Builder(WatchFaceService.this)
+    .setCardPeekMode(WatchFaceStyle.PEEK_MODE_SHORT)
+    .setAmbientPeekMode(WatchFaceStyle.AMBIENT_PEEK_MODE_HIDDEN)
+    .setBackgroundVisibility(WatchFaceStyle.BACKGROUND_VISIBILITY_INTERRUPTIVE)
+    .setShowSystemUiTime(false)" needs .build() after "...(false)"
+	
+- "invalidate()" no semicolon
+
+- "New\Values resource file" improperly boldened. as in despite being in code block, only half of it it, the other half is plain.
+
+- "name the file colours", "<colour name="watch_face_time">#FFFFFF</color>" used british instead of american. just cmd+f(colour)
+
+- "<dimen name="time_size">46</dimen>" 46 should be 46 dp
+
+- "new WatchFace(timePaint, resources.getColor(R.color.watch_face_fill));" shouldd have return in front of it
+
+- "watchFace = WatchFace.newInstance(WatchFaceService);" should be newInstance(WatchFaceService.this)
+
+- "TIME_FORMAT = "02d:02d"" format string should be %02d:%02d. percents left out
+
+- "<color name="watch_face_date">009688</color>" missing hashtag on colour
+
+- "replace the existing implementation of WatchFace with this one:" doesnt actually change it. should be:
+WatchFace(Paint timePaint, Paint datePaint, int backgroundColor) {
+        this.timePaint = timePaint;
+        this.datePaint = datePaint;
+        this.backgroundColor = backgroundColor;
+    }
+	
+- "datePaint.setAntiAlias(true)" no semicolon
 
 
 
