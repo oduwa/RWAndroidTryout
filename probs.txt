@@ -101,6 +101,8 @@ time.setToNow();
 
 - "When the System Image dialog appears, select the x86 Lollipop image and click Next". warn reader not to select wrong lollipop. as in wearable lollipop
 
+- change image shown by "Images/xml_folder.png" to use my screenshot which is more explanatory.
+
 - "return new Engine()" no semicolon. also maybe mention necessary imports
 
 - "Select the two files in Finder and then right-click" user might not be using a mac or know what finder is
