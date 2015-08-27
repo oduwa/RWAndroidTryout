@@ -195,9 +195,9 @@ Time to get something on that screen!
 
 ## Starting the engine
 
-As I mentioned earlier, Engine implements **CanvasWatchFaceService.Engine**, which is what draws the watch face on the canvas, and also contains a series of useful callbacks.
+As mentioned earlier, Engine implements **CanvasWatchFaceService.Engine**, which is what draws the watch face on the canvas, and also contains a series of useful callbacks.
 
-To begin we need to define our watch face style, and we do this in **onCreate**, which is declared in **CanvasWatchFaceService.Engine**. In defining the watch face style, we can customise how interface elements such as the battery indicator are drawn over the watch face, or how the cards behave in both normal and ambient modes. In order to define the watch face style we call **setWatchFaceStyle**.
+To begin you need to define your watch face style, and you do this in the **onCreate()** method of **CanvasWatchFaceService.Engine**. In defining the watch face style, you can customise how interface elements such as the battery indicator are drawn over the watch face, or how the cards behave in both normal and ambient modes. In order to define the watch face style we call **setWatchFaceStyle()**.
 
 Add the following inside **Engine**:
 
@@ -207,58 +207,86 @@ Add the following inside **Engine**:
         .setCardPeekMode(WatchFaceStyle.PEEK_MODE_SHORT)
         .setAmbientPeekMode(WatchFaceStyle.AMBIENT_PEEK_MODE_HIDDEN)
         .setBackgroundVisibility(WatchFaceStyle.BACKGROUND_VISIBILITY_INTERRUPTIVE)
-        .setShowSystemUiTime(false));
+        .setShowSystemUiTime(false).build());
     }
 
-Here we're defining how four different areas of your watch face should behave:
+Here you're defining how four different areas of the watch face should behave:
 
-* We set the card peek mode to **PEEK_MODE_SHORT** which means cards will only show a single line of content.
-* We set the ambient peek mode to **AMBIENT_PEEK_MODE_HIDDEN** meaning cards won't be displayed when the watch face enters ambient mode.
-* We set the background visibility to **BACKGROUND_VISIBILITY_INTERRUPTIVE** which means the background of the card should be shown briefly, but only if that card represents an interruptive notification.
-* And finally, we declare that we don't want the system time to be displayed because we're going to draw it manually.
+* You set the card peek mode to **PEEK_MODE_SHORT** which means cards will only show a single line of content.
+* You set the ambient peek mode to **AMBIENT_PEEK_MODE_HIDDEN** meaning cards won't be displayed when the watch face enters ambient mode.
+* You set the background visibility to **BACKGROUND_VISIBILITY_INTERRUPTIVE** which means the background of the card should be shown briefly, but only if that card represents an interruptive notification.
+* And finally, you declare that you don't want the system time to be displayed because you're going to draw it manually.
 
-With the watch face style defined, we now need to implement the necessary callbacks. But first, let's take a look at a selection of the callbacks available to get a better idea of how watch faces behave:
+With the watch face style defined, you now need to implement the necessary callbacks. But first, let's take a look at a selection of the callbacks available to get a better idea of how watch faces behave:
 
-* **onDraw(Canvas canvas, Rect bounds)**: This is called every time the watch face is invalidated, think `drawRect(_:)` and `setNeedsDisplay()` on iOS. Here we'll draw the watch face using the provided Canvas and Rect, the latter defining the face's bounds.
+* **onDraw(Canvas canvas, Rect bounds)**: This is called every time the watch face is invalidated. Think `drawRect(_:)` and `setNeedsDisplay()` on iOS. Here we'll draw the watch face using the provided Canvas and Rect, the latter defining the face's bounds.
 * **onTimeTick()**: This is called periodically in ambient mode to update the time shown by the watch face. This method is called at least once per minute.
-* **onVisibilityChanged(boolean visible)**: This is called to inform you of the watch face becoming visible or hidden. If we decide to override this method, you must call super.onVisibilityChanged(visible) as the very first statement in your override.
-* **onAmbientModeChanged(boolean inAmbientMode)**: This is called when the device enters or exits ambient mode. Google recommends that the watch face should switch to a black and white display while in ambient mode, and if the watch face displays seconds, they should be hidden in ambient mode.
+* **onVisibilityChanged(boolean visible)**: This is called to inform you of the watch face becoming visible or hidden. If you decide to override this method, you must call super.onVisibilityChanged(visible) as the very first statement in your override.
+* **onAmbientModeChanged(boolean inAmbientMode)**: This is called when the device enters or exits ambient mode. Google recommends that the watch face should switch to a black and white display while in ambient mode, and if the watch face displays seconds, it should be hidden in ambient mode.
 * **onPeekCardPositionUpdate(Rect rect)**: This is called when the first, peeking card positions itself on the screen. This is where the watch face can change its appearance depending on where the card is on the screen. This callback doesn't provide information about all movements of the card, only about its location when it's peeking at the bottom and allowing the watch face to be exposed.
 
-There are some other callbacks defined in **CanvasWatchFaceService.Engine** that may be of interest, so I highly recommend you check out the docs.
+There are some other callbacks defined in **WatchFaceService.Engine** that may be of interest, so I highly recommend you check out the [docs](http://developer.android.com/reference/android/support/wearable/watchface/WatchFaceService.Engine.html).
 
-With the theory out of the way, add the following to **Engine**, just below **onCreate**:
+With the theory out of the way, add the following to **Engine**, just below **onCreate()**:
 
     @Override
     public void onTimeTick() {
       super.onTimeTick();
-      invalidate()
+      invalidate();
     }
 
     @Override
     public void onDraw(Canvas canvas, Rect bounds) {
-
+      super(canvas, bounds);
     }
 
-In **onTimeTick** we simply invalidate the display so the watch face is redrawn. We'll flesh out **onDraw** shortly, but for now it simply calls through to it's super implementation.
+In **onTimeTick()**, we simply invalidate the display so the watch face is redrawn. We'll flesh out **onDraw()** shortly, but for now it simply calls through to it's super implementation.
 
 ## Drawing time
 
-To keep our code clean and readable, we'll create a separate class that'll be responsible for actually performing the drawing, and which will be invoked from within **onDraw** so that it happens at the correct time. We'll also pass the canvas and bounds to this new class.
+To keep our code clean and readable, we'll create a separate class that'll be responsible for actually performing the drawing, and will be invoked from within **onDraw()** so that it happens at the correct time. We'll also pass the canvas and bounds to this new class.
 
-Right-click on `wear\java\your-package-name.watchface` in the project navigator and choose `New\Java Class`. Name the class WatchFace and click OK.
+Right-click on **wear\java\your-package-name.watchface** in the project navigator and choose **New\Java Class**. Name the class **WatchFace** and click **OK**.
+
+Now let's add the supporting resources and values that will be used in your brand new WatchFace class. Right-click on **wear\res\values** in the project navigator and choose **New\Values** resource file. In the subsequent dialog name the file **colors** and click **OK**.
+
+Add the following to the new file, _inside_ the resources tag:
+
+    <color name="watch_face_time">#FFFFFF</color>
+    <color name="watch_face_fill">#00796B</color>
+
+Here you're simply defining the colours to be used as the fill for the watch face background and the text colour for the time.
+
+Right-click again on **wear\res\values** in the project navigator and choose **New\Values** resource file. Name this file **dimensions** and click **OK**.
+
+Again, add the following to the new file, _inside_ the resources tag:
+
+    <dimen name="time_size">46dp</dimen>
+
+Here you're defining the size of the text used to the display the time. We're abstracting these values out of the code so they're easily changeable, and can be reused across different classes; it's a good practice to follow in Android development.
+
+Its time to get back to coding! Open the **WatchFace** class you created a while ago.
+
+Replace the imports beneath the package declaration with the following:
+
+    import android.content.Context;
+    import android.content.res.Resources;
+    import android.graphics.Canvas;
+    import android.graphics.Paint;
+    import android.graphics.Rect;
+    import android.text.format.Time;
 
 Add the following inside the definition of **WatchFace**:
 
     // 1
-    private static final String TIME_FORMAT = "02d:02d";
-    private final Paint timePaint;
-    private final int backgroundColor;
+    private static final String TIME_FORMAT = "%02d:%02d";
+    private final Paint mTimePaint;
+    private final int mBackgroundColor;
 
     // 2
     WatchFace(Paint timePaint, int backgroundColor) {
-      this.timePaint = timePaint;
-      this.backgroundColor = backgroundColor;
+      this.mTimePaint = timePaint;
+      this.mBackgroundColor = backgroundColor;
     }
 
     // 3
@@ -281,50 +309,29 @@ Add the following inside the definition of **WatchFace**:
 
 Here's a breakdown of the code above:
 
-1. We define some private variables that are required for drawing the watch face, including an instance of Paint that will be used to draw the text.
+1. We define some private variables that are required for drawing the watch face, including an instance of Paint that will be used to draw the text. `TIME_FORMAT` is a special string that is used to specify the format the time will be displayed in. In this case, if either the hour or minute value has less than 2 digits, pad it with a zero.
 2. We implement the default initialiser for the new class.
 3. We implement a convenience initialiser that's used to do any necessary setup before calling the default initialiser.
-4. We create an instance of Paint, and set the colour, text size, and whether or not the text should be drawn using anti-aliasing.
-5. This is where the actual drawing will take place, and it'll be called from within our **onDraw** in **Engine**. We'll flesh this out shortly.
+4. We create an instance of Paint, and set the colour, text size, and whether or not the text should be drawn using anti-aliasing. In the simplest sense, anti-aliasing refers to techniques used to improve the quality of raster images.
+5. This is where the actual drawing will take place, and it'll be called from within our **onDraw()** in **Engine**. You will be fleshing it out shortly.
 
-At this point you've probably noticed that any call using resources is currently red, indicating the corresponding resource is missing. We'll fix that now, starting with the colours.
-
-Right-click on `wear\res\values` in the project navigator and choose `New\Values` resource file. In the subsequent dialog name the file colours and click OK.
-
-Add the following to the new file, _inside_ the resources tag:
-
-    <colour name="watch_face_time">#FFFFFF</color>
-    <color name="watch_face_fill">#00796B</color>
-
-Here we're simply defining the colours to be used as the fill for the watch face background and the text colour for the time.
-
-Right-click again on `wear\res\values` in the project navigator and choose `New\Values` resource file. Name this file dimensions and click OK.
-
-Again, add the following to the new file, _inside_ the resources tag:
-
-    <dimen name="time_size">46</dimen>
-
-Here we're defining the size of the text used to the display the time. We're abstracting these values out of the code so they're easily changeable, and can be reused across different classes; it's a good practice to follow in Android development.
-
-Re-open WatchFace.java and we should see that all the resources that were previously red are now green.
-
-Now it's time to actually put something on-screen. Add the following inside **draw**:
+Now it's time to actually put something on-screen. Add the following inside **draw()**:
 
     // 1
     Time time = new Time();
     time.setToNow();
     // 2
-    canvas.drawColor(backgroundColor);
+    canvas.drawColor(mBackgroundColor);
     // 3
     float centerX = bounds.exactCenterX();
     float centerY = bounds.exactCenterY();
     Rect boundingBox = new Rect();
     // 4
     String timeText = String.format(TIME_FORMAT, time.hour, time.minute);
-    float timeCenterX = centerX - (timePaint.measureText(timeText) / 2.0f);
-    timePaint.getTextBounds(timeText, 0, timeText.length(), boundingBox);
+    float timeCenterX = centerX - (mTimePaint.measureText(timeText) / 2.0f);
+    mTimePaint.getTextBounds(mTimeText, 0, mTimeText.length(), boundingBox);
     float timeCenterY = centerY + (boundingBox.height() / 2.0f);
-    canvas.drawText(timeText, timeCenterX, timeCenterY, timePaint);
+    canvas.drawText(timeText, timeCenterX, timeCenterY, mTimePaint);
 
 Here's the play-by-play of what's happening:
 
@@ -333,27 +340,27 @@ Here's the play-by-play of what's happening:
 3. Get the center point of the watch face, and declare an instance of Rect that we'll use to measure the dimensions of the text to draw.
 4. Format the current time, work out the position at which is should be drawn, and then draw it!
 
-There's just one more thing we need to do before we'll finally see something on-screen, and that's update **Engine** to use our new drawing class.
+There's just one more thing you need to do before you'll finally see something on-screen, and that's update **Engine** to use your new drawing class.
 
-Double-click on WatchFaceService.java in the project navigator to open it, and then add the following just above **onCreate** in Engine:
+Double-click on **WatchFaceService** in the project navigator to open it, and then add the following just above **onCreate()** in Engine:
 
-    private WatchFace watchFace;
+    private WatchFace mWatchFace;
 
-Here we're just declaring a variable that'll hold a reference to your new drawing class. Now initialise this variable by adding the following to the bottom of **onCreate**:
+Here, you're just declaring a variable that'll hold a reference to your new drawing class. Now initialise this variable by adding the following to the bottom of **onCreate()**:
 
-    watchFace = WatchFace.newInstance(WatchFaceService);
+    mWatchFace = WatchFace.newInstance(WatchFaceService);
 
-Finally, add the following to the bottom of **onDraw**:
+Finally, add the following to the bottom of **onDraw()**:
 
-    watchFace.draw(canvas, bounds);
+    mWatchFace.draw(canvas, bounds);
 
-Here we're simply calling through to the drawing method on you new class, passing the provided canvas and rect instances.
+Here you're simply calling through to the drawing method on your new class, passing the provided canvas and rect instances.
 
-Build and run by clicking `Run\Run 'wear'`, and then when prompted select the Android Wear emulator that's already running and click OK. Once the watch face has been installed we should see the following in the emulator:
+Build and run by clicking **Run\Run 'wear'**, and then when prompted select the Android Wear emulator that's already running and click **OK**. Once the watch face has been installed we should see the following in the emulator:
 
 ![](Images/time.png)
 
-Nice work! We've successfully created our first Android Wear watch face...but, we're not going to stop there. There's one more thing we need to add - the date!
+Nice work! You've successfully created your first Android Wear watch face. But why stop here?! There's more stuff we can add - like the date!
 
 ## Drawing the date
 
