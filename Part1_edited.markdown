@@ -10,7 +10,7 @@ Does that whet your appetite? Of course it does - time to get right to it!
 
 ## Getting started
 
-In this tutorial, you will be creating your custom watch face with Android Studio. Android Studio is a tool for making Android apps that is released and maintained by Google. If you don't already have it installed, follow the instructions [here](https://developer.android.com/sdk/index.html) to get it.
+In this tutorial, you will be creating your custom watch face with Android Studio. Android Studio is a tool for making Android apps that is released and maintained by Google. If you don't already have it installed, download it [here](https://developer.android.com/sdk/index.html) and follow the instructions to install it.
 
 ### Creating the project
 
