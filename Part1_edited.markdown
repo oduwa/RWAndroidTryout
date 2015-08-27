@@ -73,35 +73,62 @@ Android Wear watch faces are implemented as services and are packaged inside a w
 
 A Service is basically an application component that runs in the background and can exist outside of the application's lifetime and interact with other applications.
 
-When a user installs an Android app that contains a wearable app with a watch face, the watch face becomes available in the Android Wear companion app on the phone and in the watch face picker on the wearable. When the user selects the watch face, the wearable device shows the watch face and invokes its service callback methods as required.
+When a user installs an Android app that contains a wearable app with a watch face, the watch face becomes available in the Android Wear companion app on the phone and in the watch face picker on the wearable. When the user selects the watch face, the wearable device shows the watch face and invokes callback methods provided in the Service as required.
 
-When our watch face is active, Android Wear invokes the methods in its service when the time changes, or when other important events occur like switching to ambient mode or receiving a new notification. Your service implementation can then redraw the watch face on the screen using the updated time and any other relevant data.
+When your watch face is active, Android Wear invokes the methods in the service when the time changes, or when other important events occur like switching to ambient mode or receiving a new notification. Your service implementation can then redraw the watch face on the screen using the updated time and any other relevant data.
 
-To implement a watch face, you need to extend both **CanvasWatchFaceService** and **CanvasWatchFaceService.Engine**, and then  override the necessary callback methods in **CanvasWatchFaceService.Engine**. Both of these classes are included in the Wearable Support Library.
+To implement a watch face, you need to extend both **CanvasWatchFaceService** and **CanvasWatchFaceService.Engine**, and then override the necessary callback methods in **CanvasWatchFaceService.Engine**. Both of these classes are included in the Wearable Support Library.
 
-Right-click on `wear\java\your-package-name.watchface` in the project navigator and choose `New\Java Class`. Name the class WatchFaceService and click OK.
+Right-click on **wear\java\your-package-name.watchface** in the project navigator and choose **New\Java Class**. Name the class **WatchFaceService** and click **OK**.
 
-Replace the existing **WatchFaceService** class definition with the following:
+At the top of the file, right beneath the package declaration, replace the import statements with the following:
+
+    import android.graphics.Canvas;
+    import android.graphics.Rect;
+    import android.support.wearable.watchface.CanvasWatchFaceService;
+    import android.support.wearable.watchface.WatchFaceStyle;
+    import android.view.SurfaceHolder;
+    
+The imports contain classes we will have to use later in the tutorial, so its better to get them out of the way now.
+
+Now, replace the existing **WatchFaceService** class definition with the following:
 
     public class WatchFaceService extends CanvasWatchFaceService {
 
       @Override
       public Engine onCreateEngine() {
-        return new Engine()
+        return new Engine();
       }
 
-      private class Enigne extends CanvasWatchFaceService.Engine {
+      private class Engine extends CanvasWatchFaceService.Engine {
 
       }
     }
 
-Here you've updated your class definition so it extends **CanvasWatchFaceService**, which is the entry point for Android Wear watch faces, and also implemented **onCreateEngine**, which simply returns an instance of your implementation of **CanvasWatchFaceService.Engine**.
+Here you've updated your class definition so it extends **CanvasWatchFaceService**, which is the entry point for Android Wear watch faces, and also implemented **onCreateEngine()**, which simply returns an instance of your implementation of **CanvasWatchFaceService.Engine**.
 
-Before we can build and run our new watch face, there's a bit of housekeeping we need to take care of before it'll even show up on the watch.
+Before you can build and run your new watch face, there's a bit of housekeeping you need to take care of before it'll even show up on the watch.
 
 ## Updating the manifest
 
-Right-click `wear\manifests\AndroidManifest.xml` in the project navigator to open it, and add the following just above the application tag:
+First, you must declare the necessary resource required by Android Wear for watch faces. Right-click on **wear\res** in the project navigator and choose **New\Android resource directory**. In the subsequent dialog change Resource type to xml and click OK:
+
+![](Images/xml_folder.png)
+
+This creates a new resource folder in which to store xml files.
+
+Right-click on the new **wear\res\xml** folder in the project navigator and choose **New\XML resource file**. Name the file **watch_face** and click **OK**:
+
+![](Images/watch_face_xml_file.png)
+
+Replace the contents of the new xml file with the following:
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <wallpaper />
+
+Next, you need to add the preview images. These are the images that will be displayed when a user is looking through different watch faces to select from. Usually, you would want these would be actual screenshots of your watch face, but for the sake of brevity I've prepared some ahead of time that you can use. Download [this zip](Preview-Images.zip) file and unarchive it. Copy the two files. Head back to Android Studio, right-click on **wear\res\drawable** and choose **Paste**. Click **OK** in the confirmation dialog.
+
+Finally, its time to set up your manifest. Open **wear\manifests\AndroidManifest.xml** in the project editor (by double-clicking it) and add the following just above the application tag:
 
     <uses-permission android:name="com.google.android.PROVIDE_BACKGROUND" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -118,14 +145,14 @@ Next, add the following _inside_ the application tag:
       <!-- 2 -->
       <meta-data
         android:name="android.service.wallpaper"
-        android:resource="xml/watch_face" />
+        android:resource="@xml/watch_face" />
       <!-- 3 -->
       <meta-data
         android:name="com.google.android.wearable.watchface.preview"
-        android:resource="drawable/preview" />
+        android:resource="@drawable/preview" />
       <meta-data
         android:name="com.google.android.wearable.watchface.preview_circular"
-        android:resource="drawable/preview_circular" />
+        android:resource="@drawable/preview_circular" />
       <!-- 4 -->
       <intent-filter>
         <action android:name="android.service.wallpaper.WallpaperService" />
@@ -136,46 +163,25 @@ Next, add the following _inside_ the application tag:
 Here's the play-by-play of what's happening above:
 
 1. We declare the service, specifying the class and necessary permissions.
-2. We declare the xml resource for the watch face, which we'll add in a moment.
-3. We declare the preview images to be used by the Android Wear companion app and the watch face picker on the watch itself. Again, we'll add these shortly.
+2. We declare the xml resource for the watch face, which you added earlier.
+3. We declare the preview images to be used by the Android Wear companion app and the watch face picker on the watch itself (which you also added earlier).
 4. We declare what the service can do by way of an intent filter.
 
-Right-click on `wear\res` in the project navigator and choose `New\Android resource directory`. In the subsequent dialog change Resource type to xml and click OK:
-
-![](Images/xml_folder.png)
-
-This creates a new resource folder in which to store xml files.
-
-Right-click on the new `wear\res\xml` folder in the project navigator and choose `New\XML resource file`. Name the file watch_face and click OK:
-
-![](Images/watch_face_xml_file.png)
-
-Replace the contents of the new xml file with the following:
-
-    <?xml version="1.0" encoding="UTF-8"?>
-    <wallpaper />
-
-Here we're simply declaring the necessary resource required by Android Wear for watch faces.
-
-Finally, we need to add the preview images. Usually we would want these would be actual screenshots of our watch face, but for the sake of brevity I've prepared some ahead of time that we can use. Download [this zip](Preview-Images.zip) file and unarchive it. Select the two files in Finder and then right-click and choose Copy 2 Items. Head back to Android Studio, right-click on `wear\res\drawable` and choose Paste. Click OK in the confirmation dialog.
-
-Re-open AndroidManifest.xml and we should see that all the resources that were previously red (meaning the corresponding files didn't exist) are now green.
-
-And as green means _go_, hit Run\Run... and then choose wear in the popup dialog:
+And thats it, you're good to go! hit **Run\Run...** and then choose wear in the popup dialog:
 
 ![](Images/run.png)
 
-In the Edit configuration dialog select Do not launch Activity in the Activity section, and then click Run:
+In the Edit configuration dialog select "Do not launch Activity" in the Activity section, and then click **Run**:
 
 ![](Images/run_config.png)
 
-We only have to do this once. Future runs of the watch face will remember the configuration we've chosen here.
+You only have to do this once. Future runs of the watch face will remember the configuration you've chosen here.
 
-In the subsequent Choose device dialog, select the Android Wear emulator that's already running - the one we set up and launched earlier - and click OK:
+In the subsequent Choose device dialog, select the Android Wear emulator that's already running - the one you set up and launched earlier - and click **OK**:
 
 ![](Images/choose_device.png)
 
-Once the watch face has been installed, click-and-hold on the watch face in the emulator to invoke the watch face picker, and scroll left to find our watch face:
+Once the watch face has been installed, click and hold on the watch face in the emulator to invoke the watch face picker, and scroll left to find our watch face:
 
 ![](Images/picker.png)
 
@@ -183,7 +189,7 @@ Tap the preview to choose the watch face. We'll be presented with a black watch 
 
 ![](Images/initial_launch.png)
 
-It might not look much as this point, but we've laid all the foundations necessary for building your watch face, and now we can concentrate on the actual coding.
+It might not look much as this point, but you've laid all the foundations necessary for building your watch face, and now you can concentrate on the actual coding.
 
 Time to get something on that screen!
 
