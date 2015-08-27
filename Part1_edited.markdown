@@ -51,7 +51,7 @@ When the System Image dialog appears, select the x86 Lollipop image and click #N
 
 ![](Images/system_image.png)
 
-On the next and final dialog, check Use Host GPU. Doing this lets the emulator use your computers graphics card. This should make for a much smoother experience. Click #Finish#:
+On the next and final dialog, check Use Host GPU. The short story is that doing this lets the emulator use your computers graphics card which makes for a much smoother experience. The longer story is that what this does is makes it so that when a program inside the emulator uses OpenGL for graphics operations, the work goes out to your real GPU, and the result goes back into the emulator, instead of emulating a GPU (which is very slow). The result is a significant speed-up, because most view and canvas drawing uses OpenGL in Android ≥ 4, even in non-graphics apps. After that, click #Finish#:
 
 ![](Images/wear_device.png)
 
@@ -59,7 +59,7 @@ Next, select the new Android Wear virtual device in the Android Virtual Device m
 
 ![](Images/AVD_after.png)
 
-After a couple of minutes - you probably _do_ have time to go make a brew - you'll should see the following:
+After a short while (unless you're running a version of Android Studio < 1.0, in which case you probably have time to go make a brew) you'll' see the following:
 
 ![](Images/emulator.png)
 
