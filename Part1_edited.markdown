@@ -299,7 +299,7 @@ Add the following inside the definition of **WatchFace**:
       timePaint.setTextSize(resources.getDimension(R.dimen.time_size));
       timePaint.setAntiAlias(true);
 
-      new WatchFace(timePaint, resources.getColor(R.color.watch_face_fill));
+      return new WatchFace(timePaint, resources.getColor(R.color.watch_face_fill));
     }
 
     // 5
@@ -364,63 +364,66 @@ Nice work! You've successfully created your first Android Wear watch face. But w
 
 ## Drawing the date
 
-The watch face is pretty useful as it is, after all it does display the time. However, it'd be _even_ more useful if it also showed the date, and that's what we'll add now. We'll update the code that handles the drawing to render the date just above the time, in a lighter colour.
+The watch face is pretty useful as it is, after all it does display the time. However, it'd be _even_ more useful if it also showed the date, and that's what you'll add now. You'll update the code that handles the drawing to render the date just above the time, in a lighter colour.
 
-Open `wear\res\values\colors.xml` and add the following, just below the existing resources:
+Open **wear\res\values\colors.xml** and add the following, just below the existing resources:
 
-    <color name="watch_face_date">009688</color>
+    <color name="watch_face_date">#009688</color>
 
-This defines the light green color that we'll use as the text color for the date. The colours used in this watch face were picked using [Material Palette](http://www.materialpalette.com), which is great site for generating Material Design compliant color palettes.
+This defines the light green colour that we'll use as the text color for the date. The colours used in this watch face were picked using [Material Palette](http://www.materialpalette.com), which is a great site for generating Material Design compliant colour palettes.
 
-Next, open `wear\res\values\dimensions.xml` and add the following after the existing resources:
+Next, open **wear\res\values\dimensions.xml** and add the following after the existing resources:
 
     <dimen name="date_size">20dp</dimen>
 
-Just like before, here we're defining the size of the text used to the display the date.
+Just like before, here you're defining the size of the text used to the display the date.
 
-Open WatchFace.java and add another format string, this time for the date:
+Open **WatchFace** and add another format string, this time for the date:
 
     private static final String DATE_FORMAT = "%02d.%02d.%d";
 
 And just below that, declare another instance of Paint that can be used for _painting_ the date:
 
-    private final Paint datePaint;
+    private final Paint mDatePaint;
 
 Next, replace the existing implementation of **WatchFace** with this one:
 
     WatchFace(Paint timePaint, Paint datePaint, int backgroundColor) {
-      this.timePaint = timePaint;
-      this.backgroundColor = backgroundColor;
+      this.mTimePaint = timePaint;
+      this.mDatePaint = datePaint;
+      this.mBackgroundColor = backgroundColor;
     }
 
 Here we've updated the method signature so that it accepts a second Paint parameter, and then you assign that to the datePaint variable you created in the previous step.
 
-Now add the following just above the return statement in **newInstance**:
+Now add the following just above the return statement in **newInstance()**:
 
     Paint datePaint = new Paint();
     datePaint.setColor(resources.getColor(R.color.watch_face_date));
     datePaint.setTextSize(context.getResources().getDimension(R.dimen.date_size));
-    datePaint.setAntiAlias(true)
+    datePaint.setAntiAlias(true);
 
-Just like we did for the time, here you're creating an instance of Paint which will be used for drawing the date, and set the color, text size, and whether or not the text should be drawn using anti-aliasing.
+Just like we did for the time, here you're creating an instance of Paint which will be used for drawing the date. You then set the color, text size, and whether or not the text should be drawn using anti-aliasing.
 
-Next, update the return statement in **newInstance** so that is uses the new method signature of the default initialiser, passing the new Paint object:
+Next, update the return statement in **newInstance()** so that is uses the new method signature of the default initialiser, passing the new Paint object:
 
     return new WatchFace(timePaint, datePaint, resources.getColor(R.color.watch_face_fill));
 
-Finally, add the following to the very bottom of **draw**, which will actually draw the date:
+Finally, add the following to the very bottom of **draw()**, which will actually draw the date:
 
     String dateText = String.format(DATE_FORMAT, time.monthDay, time.month + 1, time.year);
-    float dateCenterX = centerX - (datePaint.measureText(dateText) / 2.0f);
+    float dateCenterX = centerX - (mDatePaint.measureText(dateText) / 2.0f);
     float dateCenterY = timeCenterY - (boundingBox.height() + 10.0f);
-    canvas.drawText(dateText, dateCenterX, dateCenterY, datePaint);
+    canvas.drawText(dateText, dateCenterX, dateCenterY, mDatePaint);
 
-Here we format the date using both the format string you just added and the existing instance of Time, work out the position it should be drawn, which in this case is just above the time, and then draw it!
+Here we format the date using both the format string you just added and the existing instance of Time, work out the position it should be drawn, which in this case is just above the time, and then draw it! Also, it is worth noting that you have to add 1 to the month because months are indexed from 0 (so January is 0 and December is 11).
 
-Build and run by clicking `Run\Run 'wear'`, and then when prompted select the Android Wear emulator that's already running and click OK. Once the updated watch face has been installed you should see something similar to the following in the emulator:
+Build and run by clicking **Run\Run 'wear'**, and then when prompted, select the Android Wear emulator that's already running and click **OK**. Once the updated watch face has been installed you should see something similar to the following in the emulator:
 
 ![](Images/time_date.png)
 
 The watch face now displays both the time and date, in different colours, and using different font sizes. Pretty sharp!
 
 ![](Images/victory.gif)
+
+## Where To Go From Here
