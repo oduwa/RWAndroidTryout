@@ -22,15 +22,15 @@ Name the app **WatchFace**, set an appropriate company domain and project locati
 
 ![](Images/create_project.png)
 
-On the Target Android Devices dialog, make sure you check both "Phone and Tablet" and "Wear" and set the Minimum SDK to #API 21: Android 5.0 (Lollipop)# for both. After that, click #Next#:
+On the Target Android Devices dialog, make sure you check both "Phone and Tablet" and "Wear" and set the Minimum SDK to **API 21: Android 5.0 (Lollipop)** for both. After that, click **Next**:
 
 ![](Images/target_devices.png)
 
-On the next dialog, select "Add No Activity" since you won't require an activity, and click #Next#:
+On the next dialog, select "Add No Activity" since you won't require an activity, and click **Next**:
 
 ![](Images/add_activity_mobile.png)
 
-You will be presented with a "Wear" variant of the last dialog. Again, select "Add No Activity" and click #Next#: 
+You will be presented with a "Wear" variant of the last dialog. Again, select "Add No Activity" and click **Next**: 
 
 ![](Images/add_activity_wear.png)
 
@@ -39,19 +39,19 @@ Now you've created the project, it's time to create an emulator suitable for tes
 
 ### Creating an Android Wear virtual device
 
-Select #Tools\Android\AVD Manager# and in the window that appears click #Create Virtual Device#:
+Select **Tools\Android\AVD Manager** and in the window that appears click #Create Virtual Device#:
 
 ![](Images/AVD.png)
 
-In the Select Hardware dialog, choose "Wear" from the category list, then "Android Wear Square" from the hardware list, and then click #Next#:
+In the Select Hardware dialog, choose "Wear" from the category list, then "Android Wear Square" from the hardware list, and then click **Next**:
 
 ![](Images/hardware.png)
 
-When the System Image dialog appears, select the x86 Lollipop image and click #Next#:
+When the System Image dialog appears, select the x86 Lollipop image and click **Next**:
 
 ![](Images/system_image.png)
 
-On the next and final dialog, check Use Host GPU. The short story is that doing this lets the emulator use your computers graphics card which makes for a much smoother experience. The longer story is that what this does is makes it so that when a program inside the emulator uses OpenGL for graphics operations, the work goes out to your real GPU, and the result goes back into the emulator, instead of emulating a GPU (which is very slow). The result is a significant speed-up, because most view and canvas drawing uses OpenGL in Android ≥ 4, even in non-graphics apps. After that, click #Finish#:
+On the next and final dialog, check Use Host GPU. The short story is that doing this lets the emulator use your computers graphics card which makes for a much smoother experience. The longer story is that what this does is makes it so that when a program inside the emulator uses OpenGL for graphics operations, the work goes out to your real GPU, and the result goes back into the emulator, instead of emulating a GPU (which is very slow). The result is a significant speed-up, because most view and canvas drawing uses OpenGL in Android ≥ 4, even in non-graphics apps. After that, click **Finish**:
 
 ![](Images/wear_device.png)
 
