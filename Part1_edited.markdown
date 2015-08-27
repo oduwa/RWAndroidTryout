@@ -69,7 +69,11 @@ And with that, let's get coding!
 
 ## Building a watch face service
 
-Android Wear watch faces are implemented as services and are packaged inside a wearable app. When a user installs an Android app that contains a wearable app with a watch face, the watch face becomes available in the Android Wear companion app on the phone and in the watch face picker on the wearable. When the user selects the watch face, the wearable device shows the watch face and invokes its service callback methods as required.
+Android Wear watch faces are implemented as services and are packaged inside a wearable app.
+
+A Service is basically an application component that runs in the background and can exist outside of the application's lifetime and interact with other applications.
+
+When a user installs an Android app that contains a wearable app with a watch face, the watch face becomes available in the Android Wear companion app on the phone and in the watch face picker on the wearable. When the user selects the watch face, the wearable device shows the watch face and invokes its service callback methods as required.
 
 When our watch face is active, Android Wear invokes the methods in its service when the time changes, or when other important events occur like switching to ambient mode or receiving a new notification. Your service implementation can then redraw the watch face on the screen using the updated time and any other relevant data.
 
