@@ -10,43 +10,48 @@ Does that whet your appetite? Of course it does - time to get right to it!
 
 ## Getting started
 
-I'm going to assume you already have [Android Studio](http://developer.android.com/tools/studio/index.html) installed.
+In this tutorial, you will be creating your custom watch face with Android Studio. Android Studio is a tool for making Android apps that is released and maintained by Google. If you don't already have it installed, follow the instructions [here](https://developer.android.com/sdk/index.html) to get it.
 
 ### Creating the project
 
-Open Android Studio and select `Start a new Android Studio project` from the Quick Start menu:
+Open up Android Studio and you should be greeted with a window just like the one below. Select #Start a new Android Studio project# from the Quick Start menu:
 
 ![](Images/quick_start.png)
 
-Name the app `WatcFhace`, set an appropriate company domain and project location, and then click Next. On the Target Android Devices dialog, make sure you check both Phone and Tablet and Wear, set the Minimum SDK to `API 12: Android 5.0 (Lollipop)` for both, and click Next:
+Name the app #WatchFace#, set an appropriate company domain and project location. Your domain name can be com.<Your computer username> or com.<Your company name>. After this, click #Next#.
+
+![](Images/create_project.png)
+
+On the Target Android Devices dialog, make sure you check both "Phone and Tablet" and "Wear" and set the Minimum SDK to #API 21: Android 5.0 (Lollipop)# for both. After that, click #Next#:
 
 ![](Images/target_devices.png)
 
-On the subsequent Add an activity to Mobile dialog, select Add No Activity since we don't require an activity, and click Next:
+On the next dialog, select "Add No Activity" since you won't require an activity, and click #Next#:
 
 ![](Images/add_activity_mobile.png)
 
-Then do the same on the Add an activity to Wear dialog, and click Finish:
+You will be presented with a "Wear" variant of the last dialog. Again, select "Add No Activity" and click #Next#: 
 
 ![](Images/add_activity_wear.png)
 
-Now we've created the project, it's time to create an emulator suitable for testing Android Wear watch faces.
+Now you've created the project, it's time to create an emulator suitable for testing Android Wear watch faces.
 
-### Creating an Android Were virtual device
 
-Select `Tools\Android\AVD Manager` and in the window that appears click Create Virtual Device...:
+### Creating an Android Wear virtual device
+
+Select #Tools\Android\AVD Manager# and in the window that appears click #Create Virtual Device#:
 
 ![](Images/AVD.png)
 
-In the Select Hardware dialog, choose Wear from the category list, then Android Wear Square from the hardware list, and then click Next:
+In the Select Hardware dialog, choose "Wear" from the category list, then "Android Wear Square" from the hardware list, and then click #Next#:
 
 ![](Images/hardware.png)
 
-When the System Image dialog appears, select the x86 Lollipop image and click Next:
+When the System Image dialog appears, select the x86 Lollipop image and click #Next#:
 
 ![](Images/system_image.png)
 
-On the next and final dialog, check Use Host GPU, which allows the emulator to use our machines GPU and therefore provide a much better experience. Click Finish:
+On the next and final dialog, check Use Host GPU. Doing this lets the emulator use your computers graphics card. This should make for a much smoother experience. Click #Finish#:
 
 ![](Images/wear_device.png)
 
