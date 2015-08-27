@@ -14,11 +14,11 @@ In this tutorial, you will be creating your custom watch face with Android Studi
 
 ### Creating the project
 
-Open up Android Studio and you should be greeted with a window just like the one below. Select #Start a new Android Studio project# from the Quick Start menu:
+Open up Android Studio and you should be greeted with a window just like the one below. Select **Start a new Android Studio project** from the Quick Start menu:
 
 ![](Images/quick_start.png)
 
-Name the app #WatchFace#, set an appropriate company domain and project location. Your domain name can be com.<Your computer username> or com.<Your company name>. After this, click #Next#.
+Name the app **WatchFace**, set an appropriate company domain and project location. Your domain name can be com.<Your computer username> or com.<Your company name>. After this, click **Next**.
 
 ![](Images/create_project.png)
 
@@ -59,11 +59,11 @@ Next, select the new Android Wear virtual device in the Android Virtual Device m
 
 ![](Images/AVD_after.png)
 
-After a short while (unless you're running a version of Android Studio < 1.0, in which case you probably have time to go make a brew) you'll' see the following:
+After a short while (unless you're running a version of Android Studio < 1.0, in which case you probably have time to go make a brew) you'll see the following:
 
 ![](Images/emulator.png)
 
-As this is the first time we've launched the emulator follow the on-screen instructions to complete the on-boarding process.
+If this is the first time you've launched the emulator, follow the on-screen instructions to complete the on-boarding process.
 
 And with that, let's get coding!
 
