@@ -435,7 +435,7 @@ The watch face now displays both the time and date, in different colours, using 
 
 ![](Images/victory.gif)
 
-## Where To Go From Here
+## Where To Go From Here?
 
 You can [download the finished version of the project here](http://finished.project.link).
 
