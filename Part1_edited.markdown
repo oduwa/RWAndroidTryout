@@ -10,6 +10,13 @@ Does that whet your appetite? Of course it does - time to get right to it!
 
 ## Getting started
 
+The Android Wear API enables you to create custom watch faces for Wear devices. When a user installs a handheld app that contains a wearable app with watch faces, the watch faces become available in the Android Wear companion app on the handheld device and in the watch face picker on the wearable device. This tutorial will be focusing on implementing custom watch faces, packaged inside a wear app.
+
+The two major things you're going to learn in this tutorial are: 
+
+1. How to create a custom watch face that can be selected from the watch face picker.
+2. How to design a custom watch face.
+
 In this tutorial, you will be creating your custom watch face with Android Studio. Android Studio is a tool for making Android apps that is released and maintained by Google. If you don't already have it installed, download it [here](https://developer.android.com/sdk/index.html) and follow the instructions to install it.
 
 ### Creating the project
