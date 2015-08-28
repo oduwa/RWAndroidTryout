@@ -428,10 +428,10 @@ The watch face now displays both the time and date, in different colours, and us
 
 ## Where To Go From Here
 
-You can download the finished version of the project [here](http://finished.project.link).
+You can [download the finished version of the project here](http://finished.project.link).
 
-There are still other cool things you can do with Android Wear watch faces. Google outlines some of them in their developer website [here](https://developer.android.com/training/wearables/watch-faces/index.html). As a fun challenge, see if you can extend the watch face so that it makes a funny sound whenever you tap on it. You can use the information on the Google developer page mentioned earlier.
+There are still some other cool things you can do with Android Wear watch faces. Google outlines some of these things in their [developer website here](https://developer.android.com/training/wearables/watch-faces/index.html). As a fun challenge, see if you can extend your watch face so that it makes a funny sound whenever you tap on it. You can use the information on the Google developer page mentioned earlier.
 
-Also, if you've acquired a taste for Android wearables that will not be _worn down_(see what I did there), you can have a look at our [Google Glass tutorial](http://www.raywenderlich.com/92840/google-glass-app-tutorial).
+Also, if you've acquired a taste for Android wearables that will not be "worn down"(see what I did there :]), you can have a look at our [Google Glass tutorial](http://www.raywenderlich.com/92840/google-glass-app-tutorial).
 
 We hope you enjoyed this tutorial, and if you have any questions or comments, please join the forum discussion below!
