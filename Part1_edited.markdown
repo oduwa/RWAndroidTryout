@@ -29,15 +29,15 @@ Name the app **WatchFace**, set an appropriate company domain and project locati
 
 ![](Images/create_project.png)
 
-On the Target Android Devices dialog, make sure you check both "Phone and Tablet" and "Wear" and set the Minimum SDK to **API 21: Android 5.0 (Lollipop)** for both. After that, click **Next**:
+On the Target Android Devices dialog, make sure you check both **Phone and Tablet** and **Wear** and set the Minimum SDK to **API 21: Android 5.0 (Lollipop)** for both. After that, click **Next**:
 
 ![](Images/target_devices.png)
 
-On the next dialog, select "Add No Activity" since you won't require an activity, and click **Next**:
+On the next dialog, select **Add No Activity** since you won't require an activity, and click **Next**:
 
 ![](Images/add_activity_mobile.png)
 
-You will be presented with a "Wear" variant of the last dialog. Again, select "Add No Activity" and click **Next**: 
+You will be presented with a Wear variant of the last dialog. Again, select **Add No Activity** and click **Next**: 
 
 ![](Images/add_activity_wear.png)
 
@@ -50,7 +50,7 @@ Select **Tools\Android\AVD Manager** and in the window that appears click **Crea
 
 ![](Images/AVD.png)
 
-In the Select Hardware dialog, choose "Wear" from the category list, then "Android Wear Square" from the hardware list, and then click **Next**:
+In the Select Hardware dialog, choose **Wear** from the category list, then **Android Wear Round** from the hardware list, and then click **Next**:
 
 ![](Images/hardware.png)
 
@@ -58,11 +58,11 @@ When the System Image dialog appears, select the x86 Lollipop image and click **
 
 ![](Images/system_image.png)
 
-On the next and final dialog, check Use Host GPU. The short story is that doing this lets the emulator use your computers graphics card which makes for a much smoother experience. The longer story is that what this does is makes it so that when a program inside the emulator uses OpenGL for graphics operations, the work goes out to your real GPU, and the result goes back into the emulator, instead of emulating a GPU (which is very slow). The result is a significant speed-up, because most view and canvas drawing uses OpenGL in Android ≥ 4, even in non-graphics apps. After that, click **Finish**:
+On the next and final dialog, check **Use Host GPU**. The short story is that doing this lets the emulator use your computers graphics card which makes for a much smoother experience. The slightly longer story is that what this does is makes it so that when a program inside the emulator uses OpenGL for graphics operations, the work goes out to your real GPU, and the result goes back into the emulator, instead of emulating a GPU (which is very slow). The result is a significant speed-up, because most view and canvas drawing uses OpenGL in Android ≥ 4, even in non-graphics apps. After that, click **Finish**:
 
 ![](Images/wear_device.png)
 
-Next, select the new Android Wear virtual device in the Android Virtual Device manager and click the green Play button in the Actions section to launch it:
+Next, select the new Android Wear virtual device you just created in the Android Virtual Device manager and click the green Play button in the Actions section to launch it:
 
 ![](Images/AVD_after.png)
 
@@ -112,13 +112,13 @@ Now, replace the existing **WatchFaceService** class definition with the followi
       }
     }
 
-Here you've updated your class definition so it extends **CanvasWatchFaceService**, which is the entry point for Android Wear watch faces, and also implemented **onCreateEngine()**, which simply returns an instance of your implementation of **CanvasWatchFaceService.Engine**.
+Here you've updated your class definition so it extends **CanvasWatchFaceService**, which is the entry point for Android Wear watch faces. You also implemented **onCreateEngine()**, which simply returns an instance of your implementation of **CanvasWatchFaceService.Engine**.
 
 Before you can build and run your new watch face, there's a bit of housekeeping you need to take care of before it'll even show up on the watch.
 
 ## Updating the manifest
 
-First, you must declare the necessary resource required by Android Wear for watch faces. Right-click on **wear\res** in the project navigator and choose **New\Android resource directory**. In the subsequent dialog change Resource type to xml and click OK:
+First, you must declare the necessary resource required by Android Wear for watch faces. Right-click on **wear\res** in the project navigator and choose **New\Android resource directory**. In the subsequent dialog change **Resource type** to xml and click OK:
 
 ![](Images/xml_folder.png)
 
@@ -133,7 +133,7 @@ Replace the contents of the new xml file with the following:
     <?xml version="1.0" encoding="UTF-8"?>
     <wallpaper />
 
-Next, you need to add the preview images. These are the images that will be displayed when a user is looking through different watch faces to select from. Usually, you would want these would be actual screenshots of your watch face, but for the sake of brevity I've prepared some ahead of time that you can use. Download [this zip](Preview-Images.zip) file and unarchive it. Copy the two files. Head back to Android Studio, right-click on **wear\res\drawable** and choose **Paste**. Click **OK** in the confirmation dialog.
+Next, you need to add the preview images. These are the images that will be displayed when a user is looking through different watch faces to select from. Usually, you would want these to be actual screenshots of your watch face, but for the sake of brevity I've prepared some ahead of time that you can use. Download [this zip](Preview-Images.zip) file and unarchive it. Copy the two files. Head back to Android Studio, right-click on **wear\res\drawable** and choose **Paste**. Click **OK** in the confirmation dialog.
 
 Finally, its time to set up your manifest. Open **wear\manifests\AndroidManifest.xml** in the project editor (by double-clicking it) and add the following just above the application tag:
 
@@ -174,11 +174,11 @@ Here's the play-by-play of what's happening above:
 3. We declare the preview images to be used by the Android Wear companion app and the watch face picker on the watch itself (which you also added earlier).
 4. We declare what the service can do by way of an intent filter.
 
-And thats it, you're good to go! hit **Run\Run...** and then choose wear in the popup dialog:
+And thats it, you're good to go! Select **Run\Run...** and then choose **wear** in the popup dialog:
 
 ![](Images/run.png)
 
-In the Edit configuration dialog select "Do not launch Activity" in the Activity section, and then click **Run**:
+In the Edit configuration dialog select **Do not launch Activity** in the Activity section, and then click **Run**:
 
 ![](Images/run_config.png)
 
@@ -188,11 +188,11 @@ In the subsequent Choose device dialog, select the Android Wear emulator that's 
 
 ![](Images/choose_device.png)
 
-Once the watch face has been installed, click and hold on the watch face in the emulator to invoke the watch face picker, and scroll left to find our watch face:
+Once the watch face has been installed, click and hold on the watch face in the emulator to invoke the watch face picker, click and drag left to find our watch face:
 
 ![](Images/picker.png)
 
-Tap the preview to choose the watch face. We'll be presented with a black watch face, as shown here:
+Tap the preview to choose the watch face. We'll be presented with a black watch face, as shown below:
 
 ![](Images/initial_launch.png)
 
@@ -202,7 +202,7 @@ Time to get something on that screen!
 
 ## Starting the engine
 
-As mentioned earlier, Engine implements **CanvasWatchFaceService.Engine**, which is what draws the watch face on the canvas, and also contains a series of useful callbacks.
+As mentioned earlier, **Engine** subclasses **CanvasWatchFaceService.Engine**, which is what draws the watch face on the canvas, and also contains a series of useful callbacks.
 
 To begin you need to define your watch face style, and you do this in the **onCreate()** method of **CanvasWatchFaceService.Engine**. In defining the watch face style, you can customise how interface elements such as the battery indicator are drawn over the watch face, or how the cards behave in both normal and ambient modes. In order to define the watch face style we call **setWatchFaceStyle()**.
 
@@ -223,6 +223,8 @@ Here you're defining how four different areas of the watch face should behave:
 * You set the ambient peek mode to **AMBIENT_PEEK_MODE_HIDDEN** meaning cards won't be displayed when the watch face enters ambient mode.
 * You set the background visibility to **BACKGROUND_VISIBILITY_INTERRUPTIVE** which means the background of the card should be shown briefly, but only if that card represents an interruptive notification.
 * And finally, you declare that you don't want the system time to be displayed because you're going to draw it manually.
+
+[This page](http://developer.android.com/reference/android/support/wearable/watchface/WatchFaceStyle.Builder.html) provides a list of methods you can use to define a watch face style.
 
 With the watch face style defined, you now need to implement the necessary callbacks. But first, let's take a look at a selection of the callbacks available to get a better idea of how watch faces behave:
 
@@ -255,16 +257,16 @@ To keep our code clean and readable, we'll create a separate class that'll be re
 
 Right-click on **wear\java\your-package-name.watchface** in the project navigator and choose **New\Java Class**. Name the class **WatchFace** and click **OK**.
 
-Now let's add the supporting resources and values that will be used in your brand new WatchFace class. Right-click on **wear\res\values** in the project navigator and choose **New\Values** resource file. In the subsequent dialog name the file **colors** and click **OK**.
+Now let's add the supporting resources and values that will be used in your brand new WatchFace class. Right-click on **wear\res\values** in the project navigator and choose **New\Values resource file**. In the subsequent dialog name the file **colors** and click **OK**.
 
 Add the following to the new file, _inside_ the resources tag:
 
     <color name="watch_face_time">#FFFFFF</color>
     <color name="watch_face_fill">#00796B</color>
 
-Here you're simply defining the colours to be used as the fill for the watch face background and the text colour for the time.
+Here you're simply defining the colours to be used as the fill colour for the watch face background and the text colour for the time.
 
-Right-click again on **wear\res\values** in the project navigator and choose **New\Values** resource file. Name this file **dimensions** and click **OK**.
+Right-click again on **wear\res\values** in the project navigator and choose **New\Values resource file**. Name this file **dimensions** and click **OK**.
 
 Again, add the following to the new file, _inside_ the resources tag:
 
