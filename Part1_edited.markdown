@@ -268,7 +268,7 @@ Here you're simply defining the colours to be used as the fill colour for the wa
 
 Right-click again on **wear\res\values** in the project navigator and choose **New\Values resource file**. Name this file **dimensions** and click **OK**.
 
-Again, add the following to the new file, _inside_ the resources tag:
+Add the following to the new file, _inside_ the resources tag:
 
     <dimen name="time_size">46dp</dimen>
 
@@ -321,7 +321,7 @@ Here's a breakdown of the code above:
 1. We define some private variables that are required for drawing the watch face, including an instance of Paint that will be used to draw the text. `TIME_FORMAT` is a special string that is used to specify the format the time will be displayed in. In this case, if either the hour or minute value has less than 2 digits, pad it with a zero.
 2. We implement the default initialiser for the new class.
 3. We implement a convenience initialiser that's used to do any necessary setup before calling the default initialiser.
-4. We create an instance of Paint, and set the colour, text size, and whether or not the text should be drawn using anti-aliasing. In the simplest sense, anti-aliasing refers to techniques used to improve the quality of raster images.
+4. We create an instance of Paint, and set the colour, text size, and whether or not the text should be drawn using anti-aliasing. In the simplest sense, anti-aliasing refers to graphics techniques used to improve the quality of raster images.
 5. This is where the actual drawing will take place, and it'll be called from within our **onDraw()** in **Engine**. You will be fleshing it out shortly.
 
 Now it's time to actually put something on-screen. Add the following inside **draw()**:
@@ -365,11 +365,11 @@ Finally, add the following to the bottom of **onDraw()**:
 
 Here you're simply calling through to the drawing method on your new class, passing the provided canvas and rect instances.
 
-Build and run by clicking **Run\Run 'wear'**, and then when prompted select the Android Wear emulator that's already running and click **OK**. Once the watch face has been installed we should see the following in the emulator:
+Build and run by clicking **Run\Run 'wear'**, and then when prompted select the Android Wear emulator that's already running and click **OK**. Once the watch face has been installed you should see something like this in the emulator:
 
 ![](Images/time.png)
 
-Nice work! You've successfully created your first Android Wear watch face. But why stop here?! There's more stuff we can add - like the date!
+Nice work! You've successfully created your first Android Wear watch face. But why stop here?! There's more stuff you can add - like the date!
 
 ## Drawing the date
 
@@ -403,7 +403,7 @@ Next, replace the existing implementation of **WatchFace** with this one:
       this.mBackgroundColor = backgroundColor;
     }
 
-Here we've updated the method signature so that it accepts a second Paint parameter, and then you assign that to the datePaint variable you created in the previous step.
+Here we've updated the method signature so that it accepts a second Paint parameter, and then you assign that to the **mDatePaint** variable you created in the previous step.
 
 Now add the following just above the return statement in **newInstance()**:
 
@@ -431,7 +431,7 @@ Build and run by clicking **Run\Run 'wear'**, and then when prompted, select the
 
 ![](Images/time_date.png)
 
-The watch face now displays both the time and date, in different colours, and using different font sizes. Pretty sharp!
+The watch face now displays both the time and date, in different colours, using different font sizes. Pretty sharp!
 
 ![](Images/victory.gif)
 
@@ -439,7 +439,7 @@ The watch face now displays both the time and date, in different colours, and us
 
 You can [download the finished version of the project here](http://finished.project.link).
 
-There are still some other cool things you can do with Android Wear watch faces. Google outlines some of these things in their [developer website here](https://developer.android.com/training/wearables/watch-faces/index.html). As a fun challenge, see if you can extend your watch face so that it makes a funny sound whenever you tap on it. You can use the information on the Google developer page mentioned earlier.
+There are still some other cool things you can do with Android Wear watch faces. Google outlines some of these things in their [developer website here](https://developer.android.com/training/wearables/watch-faces/index.html). As a challenge, see if you can extend your watch face so that it makes a funny sound whenever you tap on it. You can use the information on the Google developer page mentioned earlier.
 
 Also, if you've acquired a taste for Android wearables that will not be "worn down"(see what I did there :]), you can have a look at our [Google Glass tutorial](http://www.raywenderlich.com/92840/google-glass-app-tutorial).
 
