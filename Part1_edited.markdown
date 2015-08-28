@@ -2,6 +2,13 @@
 
 In this tutorial you'll learn how to take advantage of the Android Wear APIs to create your own Android Wear watch face.
 
+The Android Wear API enables you to create custom watch faces for Wear devices. When a user installs a handheld app that contains a wearable app with watch faces, the watch faces become available in the Android Wear companion app on the handheld device and in the watch face picker on the wearable device. This tutorial will be focusing on implementing custom watch faces, packaged inside a wear app.
+
+The two major things you're going to learn in this tutorial are: 
+
+1. How to create a custom watch face that can be selected from the watch face picker.
+2. How to design a custom watch face.
+
 Here's a sneak peek of what you'll be building throughout the rest of this tutorial:
 
 ![](Images/time_date.png)
@@ -10,14 +17,7 @@ Does that whet your appetite? Of course it does - time to get right to it!
 
 ## Getting started
 
-The Android Wear API enables you to create custom watch faces for Wear devices. When a user installs a handheld app that contains a wearable app with watch faces, the watch faces become available in the Android Wear companion app on the handheld device and in the watch face picker on the wearable device. This tutorial will be focusing on implementing custom watch faces, packaged inside a wear app.
-
-The two major things you're going to learn in this tutorial are: 
-
-1. How to create a custom watch face that can be selected from the watch face picker.
-2. How to design a custom watch face.
-
-In this tutorial, you will be creating your custom watch face with Android Studio. Android Studio is a tool for making Android apps that is released and maintained by Google. If you don't already have it installed, download it [here](https://developer.android.com/sdk/index.html) and follow the instructions to install it.
+In this tutorial, you will be creating your custom watch face with Android Studio. Android Studio is a tool for making Android apps that is released and maintained by Google. If you don't already have it installed, download it [here](https://developer.android.com/sdk/index.html) and follow the instructions to install it. If you need more detailed instructions to install it, you should check out our [Android for Beginnes Tutorial](http://www.raywenderlich.com/78574/android-tutorial-for-beginners-part-1).
 
 ### Creating the project
 
@@ -25,7 +25,7 @@ Open up Android Studio and you should be greeted with a window just like the one
 
 ![](Images/quick_start.png)
 
-Name the app **WatchFace**, set an appropriate company domain and project location. Your domain name can be com.<Your computer username> or com.<Your company name>. After this, click **Next**.
+Name the app **WatchFace**, set an appropriate company domain and project location. Your domain name can be **com.<Your computer username>** or **com.<Your company name>**. After this, click **Next**.
 
 ![](Images/create_project.png)
 
@@ -46,7 +46,7 @@ Now you've created the project, it's time to create an emulator suitable for tes
 
 ### Creating an Android Wear virtual device
 
-Select **Tools\Android\AVD Manager** and in the window that appears click #Create Virtual Device#:
+Select **Tools\Android\AVD Manager** and in the window that appears click **Create Virtual Device**:
 
 ![](Images/AVD.png)
 
