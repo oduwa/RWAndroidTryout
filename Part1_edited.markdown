@@ -149,17 +149,21 @@ Next, add the following _inside_ the application tag:
       android:name=".CustomWatchFaceService"
       android:label="@string/app_name"
       android:permission="android.permission.BIND_WALLPAPER">
+      
       <!-- 2 -->
       <meta-data
         android:name="android.service.wallpaper"
         android:resource="@xml/watch_face" />
+        
       <!-- 3 -->
       <meta-data
         android:name="com.google.android.wearable.watchface.preview"
         android:resource="@drawable/preview" />
+        
       <meta-data
         android:name="com.google.android.wearable.watchface.preview_circular"
         android:resource="@drawable/preview_circular" />
+        
       <!-- 4 -->
       <intent-filter>
         <action android:name="android.service.wallpaper.WallpaperService" />
