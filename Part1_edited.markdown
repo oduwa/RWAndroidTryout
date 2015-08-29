@@ -25,7 +25,7 @@ Open up Android Studio and you should be greeted with a window just like the one
 
 ![](Images/quick_start.png)
 
-Name the app **WatchFace**, set the company domain and project location that you want. The domain name should already be filled in as **com.\<Your computer username\>** but if you want to change it, just keep in mind that the general convention is **com.\<organization name\>**. After this, click **Next**.
+Name the app **WatchFace**, set the company domain and project location that you want. The domain name should already be filled in as **com.\<your-computer-username\>** but if you want to change it, just keep in mind that the general convention is **com.\<organization-name\>**. After this, click **Next**.
 
 ![](Images/create_project.png)
 
