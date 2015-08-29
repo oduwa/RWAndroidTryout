@@ -17,7 +17,7 @@ Does that whet your appetite? Of course it does - time to get right to it!
 
 ## Getting started
 
-In this tutorial, you will be creating your custom watch face with Android Studio. Android Studio is a tool for making Android apps that is released and maintained by Google. If you don't already have it installed, download it [here](https://developer.android.com/sdk/index.html) and follow the instructions to install it. If you need more detailed instructions to install it, you should check out our [Android for Beginners Tutorial](http://www.raywenderlich.com/78574/android-tutorial-for-beginners-part-1).
+In this tutorial, you will be creating your custom watch face with Android Studio. Android Studio is a tool for making Android apps that is released and maintained by Google. If you don't already have it installed, [download it here](https://developer.android.com/sdk/index.html) and follow the instructions to install it. If you need more detailed instructions to install it, you should check out our [Android for Beginners Tutorial](http://www.raywenderlich.com/78574/android-tutorial-for-beginners-part-1).
 
 ### Creating the project
 
@@ -25,7 +25,7 @@ Open up Android Studio and you should be greeted with a window just like the one
 
 ![](Images/quick_start.png)
 
-Name the app **WatchFace**, set an appropriate company domain and project location. Your domain name can be **com.<Your computer username>** or **com.<Your company name>**. After this, click **Next**.
+Name the app **WatchFace**, set the company domain and project location that you want. The domain name should already be filled in as **com.\<Your computer username\>** but if you want to change it, just keep in mind that the general convention is **com.\<organization name\>**. After this, click **Next**.
 
 ![](Images/create_project.png)
 
