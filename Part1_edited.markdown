@@ -172,7 +172,7 @@ Here's the play-by-play of what's happening above:
 1. We declare the service, specifying the class and necessary permissions.
 2. We declare the xml resource for the watch face, which you added earlier.
 3. We declare the preview images to be used by the Android Wear companion app and the watch face picker on the watch itself (which you also added earlier).
-4. We declare what the service can do by way of an intent filter.
+4. We declare what the service can do by way of an intent filter. If you want to learn more about Intents and what this means, you can try our [Android Intents tutorial](http://www.raywenderlich.com/103044/android-intents-tutorial).
 
 And thats it, you're good to go! Select **Run\Run...** and then choose **wear** in the pop-up dialog:
 
@@ -232,7 +232,7 @@ With the watch face style defined, you now need to implement the necessary callb
 * `onTimeTick()`: This is called periodically in ambient mode to update the time shown by the watch face. This method is called at least once per minute.
 * **onVisibilityChanged(boolean visible)**: This is called to inform you of the watch face becoming visible or hidden. If you decide to override this method, you must call super.onVisibilityChanged(visible) as the very first statement in your override.
 * **onAmbientModeChanged(boolean inAmbientMode)**: This is called when the device enters or exits ambient mode. Google recommends that the watch face should switch to a black and white display while in ambient mode, and if the watch face displays seconds, it should be hidden in ambient mode.
-* **onPeekCardPositionUpdate(Rect rect)**: This is called when the first, peeking card positions itself on the screen. This is where the watch face can change its appearance depending on where the card is on the screen. This callback doesn't provide information about all movements of the card, only about its location when it's peeking at the bottom and allowing the watch face to be exposed.
+* **onPeekCardPositionUpdate(Rect rect)**: This is called when the first peeking card positions itself on the screen. This is where the watch face can change its appearance depending on where the card is on the screen. This callback doesn't provide information about all movements of the card, only about its location when it's peeking at the bottom and allowing the watch face to be exposed.
 
 There are some other callbacks that may be of interest, so I highly recommend you [check out the docs](http://developer.android.com/reference/android/support/wearable/watchface/WatchFaceService.Engine.html).
 
@@ -257,12 +257,12 @@ To keep our code clean and readable, we'll create a separate class that'll be re
 
 Right-click on **wear\java\your-package-name.watchface** in the project navigator and choose **New\Java Class**. Name the class **WatchFace** and click **OK**.
 
-Now let's add the supporting resources and values that will be used in your brand new WatchFace class. Right-click on **wear\res\values** in the project navigator and choose **New\Values resource file**. In the subsequent dialog name the file **colors** and click **OK**.
+Now let's add the supporting resources and values that will be used in your brand new WatchFace class. Right-click on **wear\res\values** in the project navigator and choose **New\Values resource file**. In the subsequent dialog, name the file **colors** and click **OK**.
 
 Add the following to the new file, _inside_ the resources tag:
 
-    <color name="watch_face_time">#FFFFFF</color>
-    <color name="watch_face_fill">#00796B</color>
+    <color name="watch_face_time_color">#FFFFFF</color>
+    <color name="watch_face_fill_color">#00796B</color>
 
 Here you're simply defining the colours to be used as the fill colour for the watch face background and the text colour for the time.
 
@@ -304,11 +304,11 @@ Add the following inside the definition of **WatchFace**:
 
       // 4
       Paint timePaint = new Paint();
-      timePaint.setColor(resources.getColor(R.color.watch_face_time));
+      timePaint.setColor(resources.getColor(R.color.watch_face_time_color));
       timePaint.setTextSize(resources.getDimension(R.dimen.time_size));
       timePaint.setAntiAlias(true);
 
-      return new WatchFace(timePaint, resources.getColor(R.color.watch_face_fill));
+      return new WatchFace(timePaint, resources.getColor(R.color.color_watch_face_fill));
     }
 
     // 5
@@ -347,7 +347,7 @@ Now it's time to actually put something onscreen. Add the following inside **dra
 
 Here's the play-by-play of what's happening:
 
-1. Grab a reference to the current time.
+1. Grab a reference to the current time. You should be using the `Time` class imported from `android.text.format.Time` not `java.util.date` or `java.sql.date`.
 2. Fill the canvas with the background fill colour you defined just a moment ago.
 3. Get the center point of the watch face, and declare an instance of Rect that we'll use to measure the dimensions of the text to draw.
 4. Format the current time, work out the position at which is should be drawn, and then draw it!
@@ -380,7 +380,7 @@ The watch face is pretty useful as it is, after all it does display the time. Ho
 
 Open **wear\res\values\colors.xml** and add the following, just below the existing resources:
 
-    <color name="watch_face_date">#009688</color>
+    <color name="watch_face_date_color">#009688</color>
 
 This defines the light green colour that we'll use as the text color for the date. The colours used in this watch face were picked using [Material Palette](http://www.materialpalette.com), which is a great site for generating Material Design compliant colour palettes.
 
@@ -388,7 +388,7 @@ Next, open **wear\res\values\dimensions.xml** and add the following after the ex
 
     <dimen name="date_size">20dp</dimen>
 
-Just like before, here you're defining the size of the text used to the display the date.
+Just like before, here you're defining the size of the text used to display the date.
 
 Open **WatchFace** and add another format string, this time for the date:
 
@@ -411,7 +411,7 @@ Here we've updated the method signature so that it accepts a second Paint parame
 Now add the following just above the return statement in **newInstance()**:
 
     Paint datePaint = new Paint();
-    datePaint.setColor(resources.getColor(R.color.watch_face_date));
+    datePaint.setColor(resources.getColor(R.color.watch_face_date_color));
     datePaint.setTextSize(context.getResources().getDimension(R.dimen.date_size));
     datePaint.setAntiAlias(true);
 
