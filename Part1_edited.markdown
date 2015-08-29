@@ -86,7 +86,7 @@ When your watch face is active, Android Wear invokes the methods in the service 
 
 To implement a watch face, you need to extend both **CanvasWatchFaceService** and **CanvasWatchFaceService.Engine**, and then override the necessary callback methods in **CanvasWatchFaceService.Engine**. Both of these classes are included in the Wearable Support Library.
 
-Right-click on **wear\java\your-package-name.watchface** in the project navigator and choose **New\Java Class**. Name the class **WatchFaceService** and click **OK**.
+Right-click on **wear\java\your-package-name.watchface** in the project navigator and choose **New\Java Class**. Name the class **CustomWatchFaceService** and click **OK**.
 
 At the top of the file, right beneath the package declaration, replace the import statements with the following:
 
@@ -98,9 +98,9 @@ At the top of the file, right beneath the package declaration, replace the impor
     
 Those imports contain classes we will use later in the tutorial, so its better to get them out of the way now.
 
-Now, replace the existing **WatchFaceService** class definition with the following:
+Now, replace the existing **CustomWatchFaceService** class definition with the following:
 
-    public class WatchFaceService extends CanvasWatchFaceService {
+    public class CustomWatchFaceService extends CanvasWatchFaceService {
 
       @Override
       public Engine onCreateEngine() {
@@ -146,7 +146,7 @@ Next, add the following _inside_ the application tag:
 
     <!-- 1 -->
     <service
-      android:name=".WatchFaceService"
+      android:name=".CustomWatchFaceService"
       android:label="@string/app_name"
       android:permission="android.permission.BIND_WALLPAPER">
       <!-- 2 -->
@@ -210,7 +210,7 @@ Add the following inside **Engine**:
 
     @Override
     public void onCreate(SurfaceHolder holder) {
-      setWatchFaceStyle(new WatchFaceStyle.Builder(WatchFaceService.this)
+      setWatchFaceStyle(new WatchFaceStyle.Builder(CustomWatchFaceService.this)
         .setCardPeekMode(WatchFaceStyle.PEEK_MODE_SHORT)
         .setAmbientPeekMode(WatchFaceStyle.AMBIENT_PEEK_MODE_HIDDEN)
         .setBackgroundVisibility(WatchFaceStyle.BACKGROUND_VISIBILITY_INTERRUPTIVE)
@@ -234,7 +234,7 @@ With the watch face style defined, you now need to implement the necessary callb
 * **onAmbientModeChanged(boolean inAmbientMode)**: This is called when the device enters or exits ambient mode. Google recommends that the watch face should switch to a black and white display while in ambient mode, and if the watch face displays seconds, it should be hidden in ambient mode.
 * **onPeekCardPositionUpdate(Rect rect)**: This is called when the first, peeking card positions itself on the screen. This is where the watch face can change its appearance depending on where the card is on the screen. This callback doesn't provide information about all movements of the card, only about its location when it's peeking at the bottom and allowing the watch face to be exposed.
 
-There are some other callbacks defined in `WatchFaceService.Engine` that may be of interest, so I highly recommend you check out the [docs](http://developer.android.com/reference/android/support/wearable/watchface/WatchFaceService.Engine.html).
+There are some other callbacks that may be of interest, so I highly recommend you [check out the docs](http://developer.android.com/reference/android/support/wearable/watchface/WatchFaceService.Engine.html).
 
 With the theory out of the way, add the following to **Engine**, just below **onCreate()**:
 
@@ -354,13 +354,13 @@ Here's the play-by-play of what's happening:
 
 There's just one more thing you need to do before you'll finally see something onscreen, and that's update `Engine` to use your new drawing class.
 
-Double-click on **WatchFaceService** in the project navigator to open it, and then add the following just above **onCreate()** in Engine:
+Double-click on **CustomWatchFaceService** in the project navigator to open it, and then add the following just above **onCreate()** in Engine:
 
     private WatchFace mWatchFace;
 
 Here, you're just declaring a variable that'll hold a reference to your new drawing class. Now initialise this variable by adding the following to the bottom of **onCreate()**:
 
-    mWatchFace = WatchFace.newInstance(WatchFaceService);
+    mWatchFace = WatchFace.newInstance(CustomWatchFaceService.this);
 
 Finally, add the following to the bottom of **onDraw()**:
 
