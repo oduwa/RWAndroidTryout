@@ -62,11 +62,11 @@ On the next and final dialog, check **Use Host GPU**. The short story is that do
 
 ![](Images/wear_device.png)
 
-Next, select the new Android Wear virtual device you just created in the Android Virtual Device manager and click the green Play button in the Actions section to launch it:
+Next, select the new Android Wear virtual device you just created in the Android Virtual Device manager and click the **green play button** in the Actions section to launch it:
 
 ![](Images/AVD_after.png)
 
-After a short while (unless you're running a version of Android Studio < 1.0, in which case you probably have time to go make a brew) you'll see the following:
+After a short while, (unless you're running a version of Android Studio < 1.0, in which case you probably have time to go make a brew), you'll see the following:
 
 ![](Images/emulator.png)
 
@@ -78,7 +78,7 @@ And with that, let's get coding!
 
 Android Wear watch faces are implemented as services and are packaged inside a wearable app.
 
-A Service is basically an application component that runs in the background and can exist outside of the application's lifetime and interact with other applications.
+A Service is basically an application component that runs in the background and can exist outside of the application's lifetime and interact with other applications. For the more advanced readers, it is important to note that while they run in the background away from the user, they still run on the main thread.
 
 When a user installs an Android app that contains a wearable app with a watch face, the watch face becomes available in the Android Wear companion app on the phone and in the watch face picker on the wearable. When the user selects the watch face, the wearable device shows the watch face and invokes callback methods provided in the Service as required.
 
@@ -96,7 +96,7 @@ At the top of the file, right beneath the package declaration, replace the impor
     import android.support.wearable.watchface.WatchFaceStyle;
     import android.view.SurfaceHolder;
     
-The imports contain classes we will have to use later in the tutorial, so its better to get them out of the way now.
+Those imports contain classes we will use later in the tutorial, so its better to get them out of the way now.
 
 Now, replace the existing **WatchFaceService** class definition with the following:
 
@@ -188,11 +188,11 @@ In the subsequent Choose device dialog, select the Android Wear emulator that's 
 
 ![](Images/choose_device.png)
 
-Once the watch face has been installed, click and hold on the watch face in the emulator to invoke the watch face picker, click and drag left to find our watch face:
+Once the watch face has been installed, click and hold on the watch face in the emulator to invoke the watch face picker, click and drag left to find your watch face:
 
 ![](Images/picker.png)
 
-Tap the preview to choose the watch face. We'll be presented with a black watch face, as shown below:
+Tap the preview to choose the watch face. You'll be presented with a black watch face, as shown below:
 
 ![](Images/initial_launch.png)
 
@@ -329,12 +329,15 @@ Now it's time to actually put something onscreen. Add the following inside **dra
     // 1
     Time time = new Time();
     time.setToNow();
+    
     // 2
     canvas.drawColor(mBackgroundColor);
+    
     // 3
     float centerX = bounds.exactCenterX();
     float centerY = bounds.exactCenterY();
     Rect boundingBox = new Rect();
+    
     // 4
     String timeText = String.format(TIME_FORMAT, time.hour, time.minute);
     float timeCenterX = centerX - (mTimePaint.measureText(timeText) / 2.0f);
