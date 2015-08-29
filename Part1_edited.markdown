@@ -417,7 +417,7 @@ Now add the following just above the return statement in **newInstance()**:
 
 Just like we did for the time, here you're creating an instance of Paint which will be used for drawing the date. You then set the color, text size, and whether or not the text should be drawn using anti-aliasing.
 
-Next, update the return statement in **newInstance()** so that is uses the new method signature of the default initialiser, passing the new Paint object:
+Next, update the return statement in **newInstance()** so that it uses the new method signature of the default initialiser, passing it the new Paint object:
 
     return new WatchFace(timePaint, datePaint, resources.getColor(R.color.watch_face_fill));
 
