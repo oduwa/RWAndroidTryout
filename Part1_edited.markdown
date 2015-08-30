@@ -1,5 +1,7 @@
 # Custom watch faces for Android Wear
 
+Its been a pretty exciting time since Android Wear was first announced a little over a year ago. Its been through a number of changes and matured since then. One of these changes is the introduction of the Watch Face API which brought some more of the openness and customizability we know and love about Android. ;] Don't like the face of the watches out there? Think they need to be a lot more pink? A little more Nicolas Cage? Well you can fix that now!
+
 In this tutorial you'll learn how to take advantage of the Android Wear APIs to create your own Android Wear watch face.
 
 The Android Wear API enables you to create custom watch faces for Wear devices. When a user installs a handheld app that contains a wearable app with watch faces, the watch faces become available in the Android Wear companion app on the handheld device and in the watch face picker on the wearable device. This tutorial will be focusing on implementing custom watch faces, packaged inside a wear app.
