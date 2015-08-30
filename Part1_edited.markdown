@@ -349,7 +349,7 @@ Now it's time to actually put something onscreen. Add the following inside **dra
 
 Here's the play-by-play of what's happening:
 
-1. Grab a reference to the current time. You should be using the `Time` class imported from `android.text.format.Time` _NOT_ `java.util.date` or `java.sql.date`.
+1. Grab a reference to the current time. You should be using the `Time` class imported from `android.text.format.Time` _not_ `java.util.date` or `java.sql.date`.
 2. Fill the canvas with the background fill colour you defined just a moment ago.
 3. Get the center point of the watch face, and declare an instance of Rect that we'll use to measure the dimensions of the text to draw.
 4. Format the current time, work out the position at which is should be drawn, and then draw it!
