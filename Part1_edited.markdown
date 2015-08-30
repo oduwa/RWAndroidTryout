@@ -25,7 +25,7 @@ In this tutorial, you will be creating your custom watch face with Android Studi
 
 Open up Android Studio and you should be greeted with a window just like the one below. Select **Start a new Android Studio project** from the Quick Start menu:
 
-![](Images/quick_start.png)
+![](Images/quick_start_edited.png)
 
 Name the app **WatchFace**, set the company domain and project location that you want. The domain name should already be filled in as **\<your-computer-username\>.com** but if you want to change it, just keep in mind that the general convention is **\<organization-name\>.com**. After this, click **Next**.
 
