@@ -1,0 +1,75 @@
+This is a list of the mistakes I found in the tutorial. I have corrected them in the edited tutorial save for the mistakes involving screenshots. I also found additional typos, bolding/highlighting and grammatical errors which I left out of this list and simply corrected in the edited tutorial.
+
+1. I think the necessary imports should be specified to the user at the begining of each instructional section involving code. This will prevent compile errors from popping up which my be unsettling to the user. One particular place in this tutorial where this is an issue is when using the class "Time", as it is declared in multiple packages.
+
+2. It would be better if the screenhots showed Android Studio in the default theme rather than the dark one, as this may unsettle readers ho have just installed Android Studio for the first time during the tutorial.
+
+3. “I'm going to assume you already have [Android Studio](http://developer.android.com/tools/studio/index.html) installed.” Not incredibly helpful. Also, the link provided doesnt even contain a download link.
+
+4. “Open Android Studio and select Start a new Android Studio project from the Quick Start menu:” Screenshot below shows different item selected. This could be a source of confusion for the reader.
+
+5. "Start a new Android Studio project" should be in bold not inline code. This is actually a mistake that I made throughout the tutorial in several places.
+
+6. “Name the app WatcFhace”. Typo in "WatcFhace". Also, the problem, I mentioned in point 5 - shown in inline code instead of bold.
+
+7. "set an appropriate company domain and project location" could show example screenshot so user knows what to is an example of an appropriate company domain and location.
+
+8. "set the Minimum SDK to API 12: Android 5.0 (Lollipop) for both" does not match screenshot image. Also "API 12: Android 5.0 (Lollipop)" should be in bold not code blocks
+
+9. "choose Wear from the category list, then Android Wear Square from the hardware list" screenshot (as well as rest of tutorial) shows Android Wear Round. Also, things to select should be in bold.
+
+10. "check Use Host GPU, which allows the emulator to use our machines GPU and therefore provide a much better experience" literally just regurgitating whats already shown in Android Studio as well as the screenshot. If we're going to use up those words from our 4000 limit, might as well provide more insight into what that means.
+
+11. "Android Wear watch faces are implemented as services and are packaged inside a wearable app" What is a service? Its an android specific concept and the reader might not know what it is.
+
+12. Rename the class "WatchFaceService" to reflect the app name as it kind of suggests it is a superclass of CanvasWatchFaceService based on common convention. In fact, WatchFaceService is indeed an abstract class that is a superclass of CanvasWatchFaceService.
+
+13. Part1.markdown line 329 should be "WatchFace.newInstance(WatchFaceService.this)" not "WatchFace.newInstance(WatchFaceService.this)"
+
+14. "private class Enigne" mispelled Engine. 
+
+15. Part1.markdown line 89 Should we talk about what it means to "extend" a class? What is the targeted reader level?
+
+16. "Right-click wear\manifests\AndroidManifest.xml". You can’t actually open it by right clicking for options. Also should be bold.
+
+17. "We declare the xml resource for the watch face, which we'll add in a moment." Better to add xml first and say what it does before this section. This way, reader never sees any errors while following the tutorial.
+
+18. "We declare what the service can do by way of an intent filter". whats an intent-filter? Another android specific concept. Should link to rw tutorial on intents.
+
+19. "We'll flesh out onDraw shortly, but for now it simply calls through to it's super implementation." no call to super in code block.
+
+20. "TIME_FORMAT = "02d:02d";" missing % (as in should be %02d:%02d). Also, talk about what the format specifier means the in code breakdown.
+
+21. timePaint, datePaint, backgroundColor and watchFace are member variables. Non-public, member variables should have 'm' prefix.
+
+22. "In the subsequent dialog name the file colours and click OK". Better to name the file "colors". Also, not correctly bolded and missing comma.
+
+23. Part1.markdown lines 298-312 should have blank lines separating each section. Same for lines 105-125. Also, which Time class should the reader be using? Refer to issue highlighted in point 1.
+
+24. Part1.markdown line 349. Missing hashtag before hex colour. line 281, used "colour" instead of "color" in colour resource tag. Also, maybe name color values to reflect that they are colors. For example "watch_face_fill_color" instead of "watch_face_fill".
+
+25. Part1.markdown line 383 "whether or not the text should be drawn using anti-aliasing." what is anti-aliasing and why do we want it.
+
+26. Part1.markdown line 391 "String dateText = String.format(DATE_FORMAT, time.monthDay, time.month + 1, time.year);" why add 1 to month?
+
+27. "return new Engine()" no semicolon at the end of line. This happens in other code blocks a well.
+
+28. "Select the two files in Finder and then right-click". Need to be careful of reader platform. The reaader might not be using a mac or know what finder is. (I certainly didnt know what finder was until I got a mac).
+
+29. "resource="xml/watch_face"" Missing "@" should be @xml/wwatch_face. The manifest has multiple occurences of these.
+
+30. Part1.markdown line 191. Doesnt actually call build. needs .build() after "...(false)".
+
+31. Part1.markdown line 290 "<dimen name="time_size">46</dimen>" missing "dp" after 46.
+
+32. Part1.markdown line 259. Missing return statement at the beginning of line.
+
+33. Part1.markdown line 367. "replace the existing implementation of WatchFace with this one:" Code block below is the same as existing code. Should have "this.datePaint = datePaint;" somewhere in it.
+
+34. "Engine implements". Should be "extends" rather than "implements" as CanvasWatchFaceService.Engine is not an interface.
+
+35. No "Where to Go From Here?" section.
+
+36. Does not provide finished project. Related to issue 35.
+
+
