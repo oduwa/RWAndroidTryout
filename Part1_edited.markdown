@@ -351,8 +351,8 @@ Here's the play-by-play of what's happening:
 
 1. Grab a reference to the current time. You should be using the `Time` class imported from `android.text.format.Time` _not_ `java.util.date` or `java.sql.date`.
 2. Fill the canvas with the background fill colour you defined just a moment ago.
-3. Get the center point of the watch face, and declare an instance of Rect that we'll use to measure the dimensions of the text to draw.
-4. Format the current time, work out the position at which is should be drawn, and then draw it!
+3. Get the center point of the watch face and declare an instance of Rect that we'll use to measure the dimensions of the text to draw.
+4. Format the current time, work out the position at which it should be drawn, and then draw it!
 
 There's just one more thing you need to do before you'll finally see something onscreen, and that's update `Engine` to use your new drawing class.
 
@@ -368,9 +368,9 @@ Finally, add the following to the bottom of **onDraw()**:
 
     mWatchFace.draw(canvas, bounds);
 
-Here you're simply calling through to the drawing method on your new class, passing the provided canvas and rect instances.
+Here you're simply calling through to the drawing method of your drawing class, passing the provided canvas and rect instances.
 
-Build and run by clicking **Run\Run 'wear'**, and then when prompted select the Android Wear emulator that's already running and click **OK**. Once the watch face has been installed you should see something like this in the emulator:
+Build and run by clicking **Run\Run 'wear'**, and then when prompted select the Android Wear emulator that's already running and click **OK**. Once the watch face has been installed you, should see something like this in the emulator:
 
 ![](Images/time.png)
 
@@ -432,7 +432,7 @@ Finally, add the following to the very bottom of **draw()**, which will actually
 
 Here we format the date using both the format string you just added and the existing instance of Time, work out the position it should be drawn, which in this case is just above the time, and then draw it! Also, it is worth noting that you have to add 1 to the month because months are indexed from 0 (so January is 0 and December is 11).
 
-Build and run by clicking **Run\Run 'wear'**, and then when prompted, select the Android Wear emulator that's already running and click **OK**. Once the updated watch face has been installed you should see something similar to the following in the emulator:
+Build and run by clicking **Run\Run 'wear'**, and then when prompted, select the Android Wear emulator that's already running and click **OK**. Once the updated watch face has been installed, you should see something similar to the following in the emulator:
 
 ![](Images/time_date.png)
 
@@ -444,7 +444,7 @@ The watch face now displays both the time and date, in different colours, using 
 
 You can [download the finished version of the project here](http://finished.project.link).
 
-There are still some other cool things you can do with Android Wear watch faces. Google outlines some of these things in their [developer website here](https://developer.android.com/training/wearables/watch-faces/index.html). As a challenge, see if you can extend your watch face so that it makes a funny sound whenever you tap on it. You can use the information on the Google developer page mentioned earlier.
+There are still some other cool things you can do with Android Wear watch faces. Google outlines some of these things in its [developer website here](https://developer.android.com/training/wearables/watch-faces/index.html). As a challenge, see if you can extend your watch face so that it makes a funny sound whenever you tap on it. You can use the information on the Google developer page mentioned earlier.
 
 Also, if you've acquired a taste for Android wearables that will not be "worn down"(see what I did there :]), you can have a look at our [Google Glass tutorial](http://www.raywenderlich.com/92840/google-glass-app-tutorial).
 
