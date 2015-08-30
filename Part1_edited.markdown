@@ -27,7 +27,7 @@ Open up Android Studio and you should be greeted with a window just like the one
 
 Name the app **WatchFace**, set the company domain and project location that you want. The domain name should already be filled in as **com.\<your-computer-username\>** but if you want to change it, just keep in mind that the general convention is **com.\<organization-name\>**. After this, click **Next**.
 
-**\<SCREENSHOT SHOWING APP NAME AND DOMAIN NAME CREATION \>**
+\<SCREENSHOT SHOWING APP NAME AND DOMAIN NAME CREATION \>
 
 On the Target Android Devices dialog, make sure you check both **Phone and Tablet** and **Wear** and set the Minimum SDK to **API 21: Android 5.0 (Lollipop)** for both. After that, click **Next**:
 
